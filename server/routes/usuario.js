@@ -4,16 +4,17 @@ const Usuario = require('../models/usuario');
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 
+///esto se llama destructuracion
+const { verificaToquen, verificaAdmi_Role } = require('../middlewares/autenticaciono.js');
 
 app.get('/', function(req, res) {
     res.json('Hello World')
 });
 
-app.get('/usuario', function(req, res) {
-    //res.json('getUsuario')
+app.get('/usuario', verificaToquen, function(req, res) {
+
     let desde = req.query.desde || 0;
     desde = Number(desde);
-
 
     let limite = req.query.limite || 5;
     limite = Number(limite);
@@ -40,7 +41,7 @@ app.get('/usuario', function(req, res) {
         });
 });
 
-app.post('/usuario', function(req, res) {
+app.post('/usuario', [verificaToquen, verificaAdmi_Role], function(req, res) {
 
     let body = req.body;
     let usuario = new Usuario({
@@ -66,7 +67,7 @@ app.post('/usuario', function(req, res) {
 
 
 
-app.put('/usuario/:id', function(req, res) {
+app.put('/usuario/:id', [verificaToquen, verificaAdmi_Role], function(req, res) {
     let id = req.params.id;
     let body = _.pick(req.body, ['nombre', 'email', 'img', 'role,estado']);
 
@@ -91,7 +92,7 @@ app.put('/usuario/:id', function(req, res) {
 
 });
 
-app.delete('/usuarioDefinitivamente/:id', function(req, res) {
+app.delete('/usuarioDefinitivamente/:id', [verificaToquen, verificaAdmi_Role], function(req, res) {
     // res.json('deleteUsuario')
     let id = req.params.id;
     Usuario.findByIdAndRemove(id, (err, usuDelete) => {
@@ -118,7 +119,7 @@ app.delete('/usuarioDefinitivamente/:id', function(req, res) {
     });
 });
 
-app.delete('/usuario/:id', function(req, res) {
+app.delete('/usuario/:id', [verificaToquen, verificaAdmi_Role], function(req, res) {
     // res.json('deleteUsuario')
     let id = req.params.id;
     let usuarioEnviado = {};
