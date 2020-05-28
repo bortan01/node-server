@@ -1,1 +1,5 @@
 mongodb+srv://user-prueba:user-prueba@cluster0-b0gk4.mongodb.net/cafe?authSource=admin&replicaSet=Cluster0-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true
+
+para la autenticacion en google 
+26148229372-14rfhslb9ms3gk6bqo6d5aq79nqkdo1g.apps.googleusercontent.com
+r1sD8eXc52QqkZmEghUchrT6

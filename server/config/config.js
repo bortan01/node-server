@@ -36,3 +36,9 @@ if (process.env.NODE_ENV === 'dev') {
 }
 ///esta es una variable creada en terminal para evitar exponer la la url de conexion
 process.env.URLDB = urlBD;
+
+//=====================
+//google client id
+//=====================
+
+process.env.CLIENT_ID = process.env.CLIENT_ID || "26148229372-14rfhslb9ms3gk6bqo6d5aq79nqkdo1g.apps.googleusercontent.com";
