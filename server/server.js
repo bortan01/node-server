@@ -4,7 +4,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
-
+const colors = require('colors');
+mongoose.set('useFindAndModify', false);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,7 +26,7 @@ conexion = async() => {
             if (err) {
                 throw new err;
             } else {
-                console.log("base de datos online");
+                console.log("base de datos online".green);
             }
         });
 }
@@ -33,5 +34,5 @@ conexion();
 
 
 app.listen(process.env.PORT, () => {
-    console.log('escuchando puerto: ', process.env.PORT);
+    console.log('escuchando puerto: '.yellow, process.env.PORT.yellow);
 })
