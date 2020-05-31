@@ -122,7 +122,8 @@ app.post('/productos', verificaToquen, (req, res) => {
         descripcion: body.descripcion,
         disponible: body.disponible,
         categoria: body.categoria,
-        usuario: req.usuario
+        usuario: req.usuario,
+        img: ""
 
 
     });

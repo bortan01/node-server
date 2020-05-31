@@ -29,7 +29,7 @@ app.get('/usuario', verificaToquen, function(req, res) {
                     err: err
                 });
             }
-            Usuario.count({}, (err, conteo) => {
+            Usuario.countDocuments({}, (err, conteo) => {
                 res.json({
                     ok: true,
                     usuario: arregloUsuarios,
