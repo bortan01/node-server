@@ -5,4 +5,5 @@ app.use(require('./login'));
 app.use(require('./categoriga'));
 app.use(require('./producto'));
 app.use(require('./uploads'));
+app.use(require('./imagenes'));
 module.exports = app;

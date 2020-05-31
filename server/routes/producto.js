@@ -119,10 +119,10 @@ app.post('/productos', verificaToquen, (req, res) => {
         usuario: req.usuario._id,
         nombre: body.nombre,
         precioUni: Number(body.precioUni),
-        descripcion: body.descripcion,
+
         disponible: body.disponible,
         categoria: body.categoria,
-        usuario: req.usuario,
+
         img: ""
 
 

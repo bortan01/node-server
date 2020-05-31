@@ -4,6 +4,8 @@ const app = express();
 const Usuario = require('../models/usuario');
 const Producto = require('../models/producto');
 
+
+
 //para subir archivos
 app.use(fileUpload());
 
@@ -65,7 +67,7 @@ app.put('/upload/:tipo/:id', function(req, res) {
         if (tipo === "usuarios") {
             imagenUsuario(id, res, nombreArchivo);
         } else {
-            //   imagenProducto(id, res, nombreArchivo);
+            imagenProducto(id, res, nombreArchivo);
         }
 
     });
@@ -75,7 +77,7 @@ app.put('/upload/:tipo/:id', function(req, res) {
 function imagenUsuario(id, res, nombreArchivo) {
     Usuario.findById(id, (err, usuDB) => {
         if (err) {
-            //borraArchivo(nombreArchivo, 'usuarios');
+            borraArchivo(nombreArchivo, 'usuarios');
             return res.status(500).json({
                 ok: false,
                 err: err,
@@ -94,7 +96,7 @@ function imagenUsuario(id, res, nombreArchivo) {
         //se hara una comprabacion para evitar que se suban imagenes 
         //con esto verificamos si la ruta ya fue creada
 
-        // borraArchivo(usuDB.img, "usuarios");
+        borraArchivo(usuDB.img, "usuarios");
         usuDB.img = nombreArchivo;
         usuDB.save((err, usuDB) => {
             res.json({
@@ -109,19 +111,19 @@ function imagenUsuario(id, res, nombreArchivo) {
     });
 }
 
-function imagenUsuario(id, res, nombreArchivo) {
-    Usuario.findById(id, (err, usuDB) => {
+function imagenProducto(id, res, nombreArchivo) {
+    Producto.findById(id, (err, proDB) => {
         if (err) {
-            //borraArchivo(nombreArchivo, 'usuarios');
+            borraArchivo(nombreArchivo, 'productos');
             return res.status(500).json({
                 ok: false,
                 err: err,
                 mi_error: "el id no existe"
             });
         }
-        if (!usuDB) {
+        if (!proDB) {
             if (err) {
-                borraArchivo(nombreArchivo, 'usuarios');
+                borraArchivo(nombreArchivo, 'productos');
                 return res.status(400).json({
                     ok: false,
                     err: "el usuario no existe"
@@ -131,12 +133,12 @@ function imagenUsuario(id, res, nombreArchivo) {
         //se hara una comprabacion para evitar que se suban imagenes 
         //con esto verificamos si la ruta ya fue creada
 
-        // borraArchivo(usuDB.img, "usuarios");
-        usuDB.img = nombreArchivo;
-        usuDB.save((err, usuDB) => {
+        borraArchivo(proDB.img, "productos");
+        proDB.img = nombreArchivo;
+        proDB.save((err, proActualizadoDB) => {
             res.json({
                 ok: true,
-                Usuario: usuDB,
+                producto: proActualizadoDB,
                 img: nombreArchivo
             });
         });

@@ -48,7 +48,8 @@ app.post('/usuario', [verificaToquen, verificaAdmi_Role], function(req, res) {
         nombre: body.nombre,
         email: body.email,
         password: bcrypt.hashSync(body.password, 10),
-        role: body.role
+        role: body.role,
+        img: ""
     });
 
     usuario.save((err, usuBD) => {
