@@ -150,6 +150,7 @@ function imagenProducto(id, res, nombreArchivo) {
 
 function borraArchivo(nombre, tipo) {
     let rutaImagen = path.resolve(__dirname, `../../uploads/${tipo}/${nombre}`);
+    console.log("el dirname es " + __dirname);
     console.log("la ruta actual es " + rutaImagen);
     if (fs.existsSync(rutaImagen)) {
         fs.unlinkSync(rutaImagen);
